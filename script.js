@@ -2,23 +2,22 @@ const text = document.getElementById("text");
 const startButton = document.getElementById("startButton");
 const blackScreen = document.getElementById("blackScreen");
 
+
 const messages = [
 
 "Twin...",
 
 "Uzakta olduğum için elimden anca bu geldi.",
 
-"2 yıldır hayatımı güzelleştiren",
+"2 yıldır hayatımı güzelleştiren yegane insansın.",
 
-"yegâne insansın.",
-
-"Ve nice mutlu senelere...",
+"Ve nice mutlu senelere..",
 
 "Yada daha iyisi...",
 
 "Nice bizli senelere diyorum.",
 
-"İyi ki doğdun Twin.",
+"İyiki doğdun twin.",
 
 "(JoJo başla)",
 
@@ -26,56 +25,68 @@ const messages = [
 
 ];
 
-const typingSpeed = 45;
-
-const readingTime = 2200;
 
 function wait(ms){
 
-return new Promise(resolve=>setTimeout(resolve,ms));
+return new Promise(resolve => setTimeout(resolve,ms));
 
 }
+
+
 
 async function typeWriter(sentence){
 
-text.innerHTML="";
+text.innerHTML = "";
 
 text.className="fadeIn";
 
+
 for(let i=0;i<sentence.length;i++){
 
-text.innerHTML+=sentence.charAt(i);
+text.innerHTML += sentence[i];
 
-await wait(typingSpeed);
+await wait(70);
+
+}
 
 }
 
-}
+
 
 async function showMessages(){
 
+
 for(let i=0;i<messages.length;i++){
+
 
 await typeWriter(messages[i]);
 
 
+await wait(2500);
 
-if(messages[i]=="I LOVE YOU TWIN"){
 
-text.style.fontSize="82px";
-
-text.style.fontWeight="700";
-
-}
-
-await wait(readingTime);
 
 text.className="fadeOut";
 
-await wait(1300);
+
+await wait(1200);
+
 
 }
+
+
 
 blackScreen.style.opacity="1";
 
+
 }
+
+
+
+startButton.onclick=function(){
+
+startButton.style.display="none";
+
+showMessages();
+
+};
