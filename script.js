@@ -58,13 +58,7 @@ for(let i=0;i<messages.length;i++){
 
 await typeWriter(messages[i]);
 
-if(messages[i]=="(JoJo başla)"){
 
-music.currentTime=0;
-
-music.play();
-
-}
 
 if(messages[i]=="I LOVE YOU TWIN"){
 
