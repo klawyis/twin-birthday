@@ -1,12 +1,13 @@
-/* ========================= */
-/* GOOGLE RESET */
-/* ========================= */
+/* =========================
+   RESET
+========================= */
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
 }
+
 
 html,
 body{
@@ -19,29 +20,32 @@ body{
     font-family:"Outfit",sans-serif;
 
     background:#081C15;
-}
-
-
-/* ========================= */
-/* ANA ARKAPLAN */
-/* ========================= */
-
-body{
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
-    position:relative;
 
     color:white;
 
 }
 
 
-/* ========================= */
-/* YEŞİL IŞIK */
-/* ========================= */
+
+/* =========================
+   BODY ORTALAMA
+========================= */
+
+body{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+
+
+/* =========================
+   ANA YEŞİL ARKA PLAN
+========================= */
 
 #background{
 
@@ -51,147 +55,185 @@ body{
 
     background:
 
-    radial-gradient(circle at center,
-    rgba(46,204,113,.15),
-    transparent 60%),
+    radial-gradient(
+        circle at center,
+        rgba(46,204,113,0.18),
+        transparent 55%
+    ),
 
     linear-gradient(
-    180deg,
-    #081C15,
-    #0B241D);
+        180deg,
+        #081C15,
+        #05110D
+    );
 
-    z-index:-3;
+
+    z-index:-5;
 
 }
 
 
-/* ========================= */
-/* YEŞİL PARLAMA */
-/* ========================= */
+
+/* =========================
+   YEŞİL IŞIK PARLAMASI
+========================= */
+
 
 #background::after{
 
     content:"";
 
+
     position:absolute;
 
+
     width:900px;
+
     height:900px;
 
+
     left:50%;
+
     top:50%;
+
 
     transform:translate(-50%,-50%);
 
+
+
     background:#2ecc71;
+
 
     filter:blur(220px);
 
-    opacity:.12;
+
+    opacity:.13;
 
 }
 
 
-/* ========================= */
-/* YAZI ORTASI */
-/* ========================= */
+
+/* =========================
+   YAZI ALANI
+========================= */
+
 
 #container{
 
     width:90%;
 
-    max-width:950px;
+    max-width:1000px;
+
 
     text-align:center;
 
-    z-index:5;
+
+    z-index:10;
 
 }
 
 
-/* ========================= */
-/* ANA YAZI */
-/* ========================= */
+
+/* =========================
+   YAZI
+========================= */
+
 
 #text{
 
-    font-size:54px;
+
+    font-size:55px;
+
 
     font-weight:300;
 
-    line-height:1.6;
+
+    line-height:1.5;
+
 
     letter-spacing:2px;
 
+
     color:white;
+
+
 
     text-shadow:
 
-    0 0 15px rgba(255,255,255,.2),
 
-    0 0 35px rgba(46,204,113,.25);
+    0 0 10px rgba(255,255,255,.25),
+
+    0 0 35px rgba(46,204,113,.45);
+
+
 
 }
 
 
-/* ========================= */
-/* YAZI GİRİŞ */
-/* ========================= */
+
+/* =========================
+   YAZI GELİŞ
+========================= */
+
 
 .fadeIn{
 
-    animation:fadeIn 1.3s forwards;
+
+animation:fadeIn 1.4s forwards;
+
 
 }
 
 
-/* ========================= */
-/* YAZI ÇIKIŞ */
-/* ========================= */
-
-.fadeOut{
-
-    animation:fadeOut 1.2s forwards;
-
-}
-
-
-/* ========================= */
-/* GİRİŞ ANİMASYONU */
-/* ========================= */
 
 @keyframes fadeIn{
+
 
 0%{
 
 opacity:0;
 
-transform:
-translateY(50px);
+transform:translateY(50px);
 
-filter:blur(12px);
+filter:blur(15px);
 
 }
+
 
 100%{
 
 opacity:1;
 
-transform:
-translateY(0);
+transform:translateY(0);
 
 filter:blur(0);
 
 }
 
+
 }
 
 
-/* ========================= */
-/* ÇIKIŞ */
-/* ========================= */
+
+
+
+/* =========================
+   YAZI GİDİŞ
+========================= */
+
+
+.fadeOut{
+
+
+animation:fadeOut 1.2s forwards;
+
+
+}
+
+
 
 @keyframes fadeOut{
+
 
 0%{
 
@@ -203,126 +245,226 @@ filter:blur(0);
 
 }
 
+
 100%{
 
 opacity:0;
 
-transform:translateY(-35px);
+transform:translateY(-40px);
 
-filter:blur(10px);
-
-}
+filter:blur(12px);
 
 }
 
 
-/* ========================= */
-/* KISUKE */
-/* ========================= */
+}
+
+
+
+
+
+/* =========================
+   KISUKE URAHARA
+========================= */
+
 
 #kisuke{
 
+
 position:fixed;
+
 
 right:40px;
 
+
 bottom:25px;
+
+
 
 width:240px;
 
-opacity:.15;
+
+
+opacity:.18;
+
+
 
 pointer-events:none;
 
-filter:drop-shadow(0 0 20px #2ecc71);
 
-animation:float 6s ease-in-out infinite;
+
+filter:
+
+drop-shadow(
+0 0 25px #2ecc71
+);
+
+
+
+animation:
+
+float 6s ease-in-out infinite;
+
+
+
+z-index:5;
+
 
 }
 
 
-/* ========================= */
+
 
 @keyframes float{
 
+
 0%{
 
-transform:
-translateY(0);
+transform:translateY(0);
 
 }
+
 
 50%{
 
-transform:
-translateY(-18px);
+transform:translateY(-20px);
 
 }
+
 
 100%{
 
-transform:
-translateY(0);
+transform:translateY(0);
 
 }
 
-}
-
-
-/* ========================= */
-/* SİYAH EKRAN */
-/* ========================= */
-
-#blackScreen{
-
-position:fixed;
-
-inset:0;
-
-background:black;
-
-opacity:0;
-
-pointer-events:none;
-
-transition:3.5s;
-
-z-index:100;
 
 }
+
+
+
+
+
+/* =========================
+   BAŞLAT BUTONU
+========================= */
+
 
 #startButton{
 
+
 position:absolute;
 
-padding:18px 45px;
 
-font-size:20px;
+z-index:50;
 
-font-family:"Outfit";
+
+
+padding:
+
+18px 45px;
+
+
 
 border:none;
 
-border-radius:12px;
 
-cursor:pointer;
+border-radius:15px;
 
-background:#2ecc71;
+
+
+font-family:"Outfit",sans-serif;
+
+
+
+font-size:22px;
+
+
+
+font-weight:500;
+
+
 
 color:white;
 
+
+
+background:#2D6A4F;
+
+
+
+cursor:pointer;
+
+
+
+box-shadow:
+
+
+0 0 25px rgba(46,204,113,.5);
+
+
+
 transition:.4s;
 
-box-shadow:0 0 25px rgba(46,204,113,.4);
 
 }
 
+
+
+
 #startButton:hover{
 
-transform:scale(1.05);
 
-background:#38d97b;
+transform:scale(1.08);
 
-box-shadow:0 0 35px rgba(46,204,113,.7);
+
+
+background:#40916C;
+
+
+
+box-shadow:
+
+
+0 0 45px rgba(46,204,113,.8);
+
+
+}
+
+
+
+
+/* =========================
+   SON KARARMA EFEKTİ
+========================= */
+
+
+#blackScreen{
+
+
+position:fixed;
+
+
+inset:0;
+
+
+
+background:black;
+
+
+
+opacity:0;
+
+
+
+transition:4s;
+
+
+
+z-index:100;
+
+
+pointer-events:none;
+
 
 }
