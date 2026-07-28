@@ -1,0 +1,292 @@
+/* ========================= */
+/* GOOGLE RESET */
+/* ========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    font-family:"Outfit",sans-serif;
+
+    background:#081C15;
+}
+
+
+/* ========================= */
+/* ANA ARKAPLAN */
+/* ========================= */
+
+body{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    position:relative;
+
+    color:white;
+
+}
+
+
+/* ========================= */
+/* YEŞİL IŞIK */
+/* ========================= */
+
+#background{
+
+    position:fixed;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at center,
+    rgba(46,204,113,.15),
+    transparent 60%),
+
+    linear-gradient(
+    180deg,
+    #081C15,
+    #0B241D);
+
+    z-index:-3;
+
+}
+
+
+/* ========================= */
+/* YEŞİL PARLAMA */
+/* ========================= */
+
+#background::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:900px;
+    height:900px;
+
+    left:50%;
+    top:50%;
+
+    transform:translate(-50%,-50%);
+
+    background:#2ecc71;
+
+    filter:blur(220px);
+
+    opacity:.12;
+
+}
+
+
+/* ========================= */
+/* YAZI ORTASI */
+/* ========================= */
+
+#container{
+
+    width:90%;
+
+    max-width:950px;
+
+    text-align:center;
+
+    z-index:5;
+
+}
+
+
+/* ========================= */
+/* ANA YAZI */
+/* ========================= */
+
+#text{
+
+    font-size:54px;
+
+    font-weight:300;
+
+    line-height:1.6;
+
+    letter-spacing:2px;
+
+    color:white;
+
+    text-shadow:
+
+    0 0 15px rgba(255,255,255,.2),
+
+    0 0 35px rgba(46,204,113,.25);
+
+}
+
+
+/* ========================= */
+/* YAZI GİRİŞ */
+/* ========================= */
+
+.fadeIn{
+
+    animation:fadeIn 1.3s forwards;
+
+}
+
+
+/* ========================= */
+/* YAZI ÇIKIŞ */
+/* ========================= */
+
+.fadeOut{
+
+    animation:fadeOut 1.2s forwards;
+
+}
+
+
+/* ========================= */
+/* GİRİŞ ANİMASYONU */
+/* ========================= */
+
+@keyframes fadeIn{
+
+0%{
+
+opacity:0;
+
+transform:
+translateY(50px);
+
+filter:blur(12px);
+
+}
+
+100%{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+filter:blur(0);
+
+}
+
+}
+
+
+/* ========================= */
+/* ÇIKIŞ */
+/* ========================= */
+
+@keyframes fadeOut{
+
+0%{
+
+opacity:1;
+
+transform:translateY(0);
+
+filter:blur(0);
+
+}
+
+100%{
+
+opacity:0;
+
+transform:translateY(-35px);
+
+filter:blur(10px);
+
+}
+
+}
+
+
+/* ========================= */
+/* KISUKE */
+/* ========================= */
+
+#kisuke{
+
+position:fixed;
+
+right:40px;
+
+bottom:25px;
+
+width:240px;
+
+opacity:.15;
+
+pointer-events:none;
+
+filter:drop-shadow(0 0 20px #2ecc71);
+
+animation:float 6s ease-in-out infinite;
+
+}
+
+
+/* ========================= */
+
+@keyframes float{
+
+0%{
+
+transform:
+translateY(0);
+
+}
+
+50%{
+
+transform:
+translateY(-18px);
+
+}
+
+100%{
+
+transform:
+translateY(0);
+
+}
+
+}
+
+
+/* ========================= */
+/* SİYAH EKRAN */
+/* ========================= */
+
+#blackScreen{
+
+position:fixed;
+
+inset:0;
+
+background:black;
+
+opacity:0;
+
+pointer-events:none;
+
+transition:3.5s;
+
+z-index:100;
+
+}
