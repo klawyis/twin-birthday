@@ -1,5 +1,4 @@
 const text = document.getElementById("text");
-const music = document.getElementById("music");
 const startButton = document.getElementById("startButton");
 const blackScreen = document.getElementById("blackScreen");
 
