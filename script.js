@@ -1,28 +1,57 @@
+// ===============================
+// ELEMENTLERİ ALIYORUZ
+// ===============================
+
+
 const gift = document.getElementById("gift");
+
 const giftScreen = document.getElementById("giftScreen");
+
 const kisuke = document.getElementById("kisuke");
 
 const text = document.getElementById("text");
+
 const buttons = document.getElementById("buttons");
 
 
+
+// ===============================
+// YAZILAR
+// ===============================
+
+
 const messages = [
-    "Twin...",
-    "Uzakta olduğum için elimden anca bu geldi.",
-    "2 yıldır hayatımı güzelleştiren yegane insansın.",
-    "Ve nice mutlu senelere..",
-    "Yada daha iyisi...",
-    "Nice bizli senelere diyorum.",
-    "İyi ki doğdun twin 💚"
+
+"Twin...",
+
+"Uzakta olduğum için elimden anca bu geldi.",
+
+"2 yıldır hayatımı güzelleştiren yegane insansın.",
+
+"Ve nice mutlu senelere..",
+
+"Yada daha iyisi...",
+
+"Nice bizli senelere diyorum.",
+
+"İyi ki doğdun twin 💚"
+
 ];
 
 
 
-function wait(time){
+
+
+// ===============================
+// BEKLEME FONKSİYONU
+// ===============================
+
+
+function sleep(ms){
 
     return new Promise(function(resolve){
 
-        setTimeout(resolve,time);
+        setTimeout(resolve,ms);
 
     });
 
@@ -32,47 +61,80 @@ function wait(time){
 
 
 
-async function typeText(message){
+// ===============================
+// YAZI ANİMASYONU
+// ===============================
+
+
+async function showText(message){
+
 
     text.innerHTML = "";
 
+
     text.classList.remove("fade");
 
+
     void text.offsetWidth;
+
 
     text.classList.add("fade");
 
 
 
-    for(let i = 0; i < message.length; i++){
+    for(
+        let i = 0;
+        i < message.length;
+        i++
+    ){
+
 
         text.innerHTML += message[i];
 
-        await wait(65);
+
+        await sleep(70);
+
 
     }
 
 
-    await wait(2500);
+
+    await sleep(2500);
+
+
 
 }
 
 
 
 
+
+
+
+// ===============================
+// TÜM HİKAYE
+// ===============================
 
 
 async function startStory(){
 
 
-    for(let i = 0; i < messages.length; i++){
+    for(
+        let i = 0;
+        i < messages.length;
+        i++
+    ){
 
-        await typeText(messages[i]);
+
+        await showText(messages[i]);
+
 
     }
 
 
-    loveQuestion();
+
+    showQuestion();
+
 
 
 }
@@ -83,49 +145,78 @@ async function startStory(){
 
 
 
-function loveQuestion(){
+
+// ===============================
+// SEVİYOR MUSUN KISMI
+// ===============================
 
 
-    text.innerHTML = "Beni seviyor musun Twin? 💚";
+function showQuestion(){
+
+
+
+    text.innerHTML =
+    "Beni seviyor musun Twin? 💚";
+
 
 
     buttons.innerHTML = `
 
     <button id="yes">
+
     EVET 💚
+
     </button>
 
+
+
     <button id="no">
+
     HAYIR 😈
+
     </button>
 
     `;
 
 
 
-    const yes = document.getElementById("yes");
-
-    const no = document.getElementById("no");
 
 
+    const yes =
+    document.getElementById("yes");
 
 
 
-    function escapeNo(){
+    const no =
+    document.getElementById("no");
 
 
-        no.style.position = "fixed";
+
+
+
+
+    function moveNo(){
+
+
+
+        no.style.position =
+        "fixed";
+
 
 
         no.style.left =
-        Math.random() * 75 + "%";
+        Math.random()*80 + "%";
+
 
 
         no.style.top =
-        Math.random() * 75 + "%";
+        Math.random()*80 + "%";
+
 
 
     }
+
+
 
 
 
@@ -133,20 +224,24 @@ function loveQuestion(){
 
     no.addEventListener(
         "mouseenter",
-        escapeNo
+        moveNo
     );
+
 
 
     no.addEventListener(
         "touchstart",
-        escapeNo
+        moveNo
     );
+
 
 
     no.addEventListener(
         "click",
-        escapeNo
+        moveNo
     );
+
+
 
 
 
@@ -158,41 +253,57 @@ function loveQuestion(){
         function(){
 
 
+
             buttons.innerHTML = "";
+
 
 
             text.innerHTML =
             "BİLİYORDUM TWIN 😎💚";
 
 
+
             createHearts();
 
 
 
-            setTimeout(function(){
 
 
-                text.innerHTML =
-                "I LOVE YOU TWIN 💚";
+            setTimeout(
+                function(){
 
 
-            },2500);
+                    text.innerHTML =
+                    "I LOVE YOU TWIN 💚";
+
+
+                },
+                3000
+            );
 
 
 
 
-            setTimeout(function(){
 
 
-                document.body.style.transition =
-                "3s";
+
+            setTimeout(
+                function(){
 
 
-                document.body.style.opacity =
-                "0";
+                    document.body.style.transition =
+                    "3s";
 
 
-            },6500);
+                    document.body.style.opacity =
+                    "0";
+
+
+
+                },
+                7000
+            );
+
 
 
 
@@ -210,19 +321,36 @@ function loveQuestion(){
 
 
 
+
+// ===============================
+// KALP YAĞMURU
+// ===============================
+
+
 function createHearts(){
 
 
-    for(let i = 0; i < 100; i++){
+
+    for(
+        let i = 0;
+        i < 100;
+        i++
+    ){
 
 
-        let heart = document.createElement("div");
+
+        const heart =
+        document.createElement("div");
 
 
-        heart.className = "heart";
+
+        heart.className =
+        "heart";
 
 
-        heart.innerHTML = "💚";
+
+        heart.innerHTML =
+        "💚";
 
 
 
@@ -232,31 +360,42 @@ function createHearts(){
 
 
         heart.style.fontSize =
-        (Math.random()*20+15)+"px";
+        (
+            Math.random()*25 + 15
+        ) + "px";
 
 
 
         heart.style.animationDuration =
-        (Math.random()*3+4)+"s";
+        (
+            Math.random()*3 + 4
+        ) + "s";
 
 
 
-        document.body.appendChild(heart);
+        document.body.appendChild(
+            heart
+        );
 
 
 
 
-        setTimeout(function(){
+
+        setTimeout(
+            function(){
 
 
-            heart.remove();
+                heart.remove();
 
 
-        },7000);
+            },
+            8000
+        );
 
 
 
     }
+
 
 
 }
@@ -267,14 +406,24 @@ function createHearts(){
 
 
 
-let opened = false;
+
+
+// ===============================
+// HEDİYE KUTUSU
+// ===============================
+
+
+let giftOpened = false;
+
+
 
 
 
 function openGift(){
 
 
-    if(opened){
+
+    if(giftOpened){
 
         return;
 
@@ -282,44 +431,62 @@ function openGift(){
 
 
 
-    opened = true;
-
-
-
-    gift.classList.add("open");
+    giftOpened = true;
 
 
 
 
-    setTimeout(function(){
-
-
-        giftScreen.classList.add("hide");
-
-
-
-        if(kisuke){
-
-
-            kisuke.classList.add("show");
-
-
-        }
+    gift.classList.add(
+        "open"
+    );
 
 
 
 
-        setTimeout(function(){
 
-
-            startStory();
-
-
-        },1500);
+    setTimeout(
+        function(){
 
 
 
-    },1000);
+            giftScreen.classList.add(
+                "hide"
+            );
+
+
+
+            if(kisuke){
+
+
+                kisuke.classList.add(
+                    "show"
+                );
+
+
+            }
+
+
+
+
+
+
+            setTimeout(
+                function(){
+
+
+                    startStory();
+
+
+
+                },
+                1500
+            );
+
+
+
+        },
+        1000
+    );
 
 
 
@@ -328,6 +495,12 @@ function openGift(){
 
 
 
+
+
+
+// ===============================
+// PC + MOBİL TIKLAMA
+// ===============================
 
 
 
@@ -340,10 +513,12 @@ if(gift){
     );
 
 
+
     gift.addEventListener(
         "touchend",
         openGift
     );
+
 
 
 }
