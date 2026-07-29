@@ -237,10 +237,16 @@ gift.onclick=function(){
 gift.classList.add("open");
 
 
+
 setTimeout(()=>{
 
 
 giftScreen.classList.add("hide");
+
+
+
+kisuke.classList.add("show");
+
 
 
 setTimeout(()=>{
