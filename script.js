@@ -18,34 +18,42 @@ const messages = [
 
 
 
-function wait(ms){
-    return new Promise(resolve => {
-        setTimeout(resolve, ms);
+function wait(time){
+
+    return new Promise(function(resolve){
+
+        setTimeout(resolve,time);
+
     });
+
 }
 
 
 
 
-async function writeText(message){
+
+async function typeText(message){
 
     text.innerHTML = "";
-    
+
     text.classList.remove("fade");
+
     void text.offsetWidth;
+
     text.classList.add("fade");
+
 
 
     for(let i = 0; i < message.length; i++){
 
         text.innerHTML += message[i];
 
-        await wait(60);
+        await wait(65);
 
     }
 
 
-    await wait(2000);
+    await wait(2500);
 
 }
 
@@ -53,16 +61,19 @@ async function writeText(message){
 
 
 
-async function start(){
+
+async function startStory(){
+
 
     for(let i = 0; i < messages.length; i++){
 
-        await writeText(messages[i]);
+        await typeText(messages[i]);
 
     }
 
 
-    askLove();
+    loveQuestion();
+
 
 }
 
@@ -71,14 +82,15 @@ async function start(){
 
 
 
-function askLove(){
+
+function loveQuestion(){
 
 
     text.innerHTML = "Beni seviyor musun Twin? 💚";
 
 
     buttons.innerHTML = `
-    
+
     <button id="yes">
     EVET 💚
     </button>
@@ -86,71 +98,111 @@ function askLove(){
     <button id="no">
     HAYIR 😈
     </button>
-    
+
     `;
 
 
 
     const yes = document.getElementById("yes");
+
     const no = document.getElementById("no");
 
 
 
-    function moveNo(){
+
+
+    function escapeNo(){
+
 
         no.style.position = "fixed";
 
-        no.style.left = Math.random()*80 + "%";
 
-        no.style.top = Math.random()*80 + "%";
+        no.style.left =
+        Math.random() * 75 + "%";
+
+
+        no.style.top =
+        Math.random() * 75 + "%";
+
 
     }
 
 
 
-    no.addEventListener("mouseenter", moveNo);
-
-    no.addEventListener("touchstart", moveNo);
-
-    no.addEventListener("click", moveNo);
 
 
+    no.addEventListener(
+        "mouseenter",
+        escapeNo
+    );
 
 
-
-    yes.onclick = function(){
-
-
-        buttons.innerHTML = "";
-
-        text.innerHTML = "BİLİYORDUM TWIN 😎💚";
+    no.addEventListener(
+        "touchstart",
+        escapeNo
+    );
 
 
-        createHearts();
-
-
-
-        setTimeout(function(){
-
-            text.innerHTML = "I LOVE YOU TWIN 💚";
-
-        },2500);
+    no.addEventListener(
+        "click",
+        escapeNo
+    );
 
 
 
-        setTimeout(function(){
-
-            document.body.style.transition = "3s";
-
-            document.body.style.opacity = "0";
-
-        },6000);
 
 
 
-    };
+    yes.addEventListener(
+        "click",
+        function(){
+
+
+            buttons.innerHTML = "";
+
+
+            text.innerHTML =
+            "BİLİYORDUM TWIN 😎💚";
+
+
+            createHearts();
+
+
+
+            setTimeout(function(){
+
+
+                text.innerHTML =
+                "I LOVE YOU TWIN 💚";
+
+
+            },2500);
+
+
+
+
+            setTimeout(function(){
+
+
+                document.body.style.transition =
+                "3s";
+
+
+                document.body.style.opacity =
+                "0";
+
+
+            },6500);
+
+
+
+        }
+    );
+
+
 
 }
+
 
 
 
@@ -161,7 +213,7 @@ function askLove(){
 function createHearts(){
 
 
-    for(let i = 0; i < 80; i++){
+    for(let i = 0; i < 100; i++){
 
 
         let heart = document.createElement("div");
@@ -173,25 +225,39 @@ function createHearts(){
         heart.innerHTML = "💚";
 
 
-        heart.style.left = Math.random()*100 + "%";
+
+        heart.style.left =
+        Math.random()*100 + "%";
+
+
+
+        heart.style.fontSize =
+        (Math.random()*20+15)+"px";
+
 
 
         heart.style.animationDuration =
-        (Math.random()*4+4)+"s";
+        (Math.random()*3+4)+"s";
+
 
 
         document.body.appendChild(heart);
 
 
 
+
         setTimeout(function(){
+
 
             heart.remove();
 
-        },8000);
+
+        },7000);
+
 
 
     }
+
 
 }
 
@@ -204,16 +270,24 @@ function createHearts(){
 let opened = false;
 
 
+
 function openGift(){
 
 
-    if(opened) return;
+    if(opened){
+
+        return;
+
+    }
+
 
 
     opened = true;
 
 
+
     gift.classList.add("open");
+
 
 
 
@@ -223,17 +297,23 @@ function openGift(){
         giftScreen.classList.add("hide");
 
 
+
         if(kisuke){
 
+
             kisuke.classList.add("show");
+
 
         }
 
 
 
+
         setTimeout(function(){
 
-            start();
+
+            startStory();
+
 
         },1500);
 
@@ -242,13 +322,28 @@ function openGift(){
     },1000);
 
 
+
 }
 
 
 
 
 
-gift.addEventListener("click", openGift);
 
 
-gift.addEventListener("touchend", openGift);
+if(gift){
+
+
+    gift.addEventListener(
+        "click",
+        openGift
+    );
+
+
+    gift.addEventListener(
+        "touchend",
+        openGift
+    );
+
+
+}
