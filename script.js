@@ -287,15 +287,51 @@ start();
 
 // PC tıklama
 
-gift.addEventListener(
-"click",
-openGift
-);
+let giftOpened = false;
 
 
-// Mobil dokunma
+function openGift(){
 
-gift.addEventListener(
-"touchstart",
-openGift
-);
+    if(giftOpened) return;
+
+    giftOpened = true;
+
+
+    gift.classList.add("open");
+
+
+    setTimeout(function(){
+
+
+        giftScreen.classList.add("hide");
+
+
+        if(kisuke){
+
+            kisuke.classList.add("show");
+
+        }
+
+
+
+        setTimeout(function(){
+
+
+            start();
+
+
+        },1500);
+
+
+
+    },1000);
+
+}
+
+
+
+
+gift.addEventListener("click", openGift);
+
+
+gift.addEventListener("touchend", openGift);
