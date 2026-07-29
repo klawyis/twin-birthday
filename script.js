@@ -1,81 +1,65 @@
-*{
+const gift=document.getElementById("gift");
 
-margin:0;
-padding:0;
-box-sizing:border-box;
-
-}
+const giftScreen=document.getElementById("giftScreen");
 
 
-body{
+const text=document.getElementById("text");
 
-height:100vh;
-
-overflow:hidden;
-
-background:#020b07;
-
-color:white;
-
-font-family:"Outfit",sans-serif;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-}
+const buttons=document.getElementById("buttons");
 
 
 
+const messages=[
 
-/* HEDİYE */
+"Twin...",
 
-#giftScreen{
+"Uzakta olduğum için elimden anca bu geldi.",
 
+"2 yıldır hayatımı güzelleştiren yegane insansın.",
 
-position:fixed;
+"Nice mutlu senelere..",
 
-inset:0;
+"Yada daha iyisi...",
 
+"Nice bizli senelere diyorum.",
 
-background:
+"İyi ki doğdun twin 💚"
 
-radial-gradient(circle,#14532d,#000);
-
-
-
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
-
-justify-content:center;
+];
 
 
-z-index:100;
 
+function wait(ms){
 
-transition:2s;
-
+return new Promise(resolve=>setTimeout(resolve,ms));
 
 }
 
 
 
-#giftScreen h1{
+async function write(msg){
 
 
-font-size:45px;
-
-color:#95d5b2;
-
-text-shadow:0 0 30px #2ecc71;
+text.innerHTML="";
 
 
-margin-bottom:60px;
+text.classList.add("fade");
+
+
+
+for(let i=0;i<msg.length;i++){
+
+
+text.innerHTML+=msg[i];
+
+
+await wait(60);
+
+
+}
+
+
+await wait(2000);
 
 
 }
@@ -84,213 +68,20 @@ margin-bottom:60px;
 
 
 
-#gift{
+async function start(){
 
 
-width:230px;
-
-height:200px;
-
-position:relative;
-
-cursor:pointer;
+for(let m of messages){
 
 
-animation:bounce 2s infinite;
+await write(m);
 
 
 }
 
 
 
-
-.giftBox{
-
-
-position:absolute;
-
-bottom:0;
-
-
-width:230px;
-
-height:140px;
-
-
-background:#1b4332;
-
-
-border-radius:15px;
-
-
-box-shadow:0 0 50px #2ecc71;
-
-
-}
-
-
-
-
-.giftLid{
-
-
-position:absolute;
-
-
-top:25px;
-
-
-left:-10px;
-
-
-width:250px;
-
-
-height:45px;
-
-
-background:#40916c;
-
-
-border-radius:10px;
-
-
-z-index:2;
-
-
-transition:1s;
-
-
-}
-
-
-
-.ribbon{
-
-
-position:absolute;
-
-left:95px;
-
-
-width:40px;
-
-height:140px;
-
-
-background:#95d5b2;
-
-
-}
-
-
-
-
-#gift.open .giftLid{
-
-
-transform:translateY(-120px) rotate(-15deg);
-
-
-}
-
-
-
-
-@keyframes bounce{
-
-
-50%{
-
-transform:translateY(-20px);
-
-}
-
-}
-
-
-
-
-
-#giftScreen.hide{
-
-opacity:0;
-
-pointer-events:none;
-
-}
-
-
-
-
-
-/* ANA */
-
-
-#main{
-
-text-align:center;
-
-z-index:5;
-
-}
-
-
-
-#text{
-
-
-font-size:55px;
-
-max-width:1000px;
-
-
-font-weight:300;
-
-
-text-shadow:
-
-0 0 20px #2ecc71;
-
-
-}
-
-
-
-
-.fade{
-
-
-animation:show 1s;
-
-
-}
-
-
-
-@keyframes show{
-
-
-from{
-
-opacity:0;
-
-transform:translateY(50px);
-
-filter:blur(10px);
-
-}
-
-
-to{
-
-opacity:1;
-
-transform:translateY(0);
-
-filter:blur(0);
-
-}
+question();
 
 
 }
@@ -299,137 +90,170 @@ filter:blur(0);
 
 
 
-/* KISUKE */
 
 
-#kisuke{
+function question(){
 
 
-position:fixed;
+text.innerHTML="Beni seviyor musun Twin? 💚";
 
 
-right:30px;
+buttons.innerHTML=`
 
-bottom:20px;
-
-
-width:230px;
-
-
-max-height:350px;
+<button id="yes">
+EVET 💚
+</button>
 
 
-object-fit:contain;
+<button id="no">
+HAYIR 😈
+</button>
 
-
-opacity:.25;
-
-
-z-index:2;
-
-
-animation:float 4s infinite;
-
-
-}
+`;
 
 
 
-@keyframes float{
+let yes=document.getElementById("yes");
 
-
-50%{
-
-transform:translateY(-20px);
-
-}
-
-}
+let no=document.getElementById("no");
 
 
 
-
-/* BUTONLAR */
-
-
-button{
+function escapeNo(){
 
 
-padding:15px 35px;
+no.style.position="fixed";
 
 
-margin:20px;
+no.style.left=Math.random()*80+"%";
 
-
-border:none;
-
-
-border-radius:20px;
-
-
-background:#2ecc71;
-
-
-color:white;
-
-
-font-size:22px;
-
-
-cursor:pointer;
-
-
-transition:.3s;
+no.style.top=Math.random()*80+"%";
 
 
 }
 
 
 
-button:hover{
+no.onmouseenter=escapeNo;
 
-transform:scale(1.1);
+no.onclick=escapeNo;
+
+
+
+
+yes.onclick=function(){
+
+
+buttons.innerHTML="";
+
+
+text.innerHTML="BİLİYORDUM TWIN 😎💚";
+
+
+hearts();
+
+
+
+setTimeout(()=>{
+
+
+text.innerHTML="I LOVE YOU TWIN 💚";
+
+
+},2500);
+
+
+
+setTimeout(()=>{
+
+
+document.body.style.transition="3s";
+
+document.body.style.opacity="0";
+
+
+},6000);
+
+
+
+};
+
+
 
 }
 
 
 
 
-/* KALPLER */
+
+function hearts(){
 
 
-.heart{
+for(let i=0;i<70;i++){
 
 
-position:fixed;
+let h=document.createElement("div");
 
 
-font-size:25px;
+h.className="heart";
 
 
-animation:fall 4s linear;
+h.innerHTML="💚";
+
+
+h.style.left=Math.random()*100+"%";
+
+
+h.style.top="0px";
+
+
+document.body.appendChild(h);
+
+
+
+setTimeout(()=>{
+
+h.remove();
+
+},4000);
 
 
 }
 
 
 
-@keyframes fall{
-
-
-from{
-
-transform:translateY(-50px);
-
 }
 
 
-to{
 
-transform:translateY(100vh);
 
-opacity:0;
 
-}
 
-}
+
+gift.onclick=function(){
+
+
+gift.classList.add("open");
+
+
+setTimeout(()=>{
+
+
+giftScreen.classList.add("hide");
+
+
+setTimeout(()=>{
+
+
+start();
+
+
+},1500);
+
+
+
+},1000);
+
+
+
+};
