@@ -151,33 +151,55 @@ buttons.innerHTML="";
 text.innerHTML="BİLİYORDUM TWIN 😎💚";
 
 
-hearts();
+function hearts(){
+
+
+for(let i=0;i<80;i++){
+
+
+let h=document.createElement("div");
+
+
+h.className="heart";
+
+
+h.innerHTML="💚";
+
+
+
+h.style.left =
+Math.random()*100+"%";
+
+
+
+h.style.fontSize =
+(Math.random()*25+15)+"px";
+
+
+
+h.style.animationDuration =
+(Math.random()*4+4)+"s";
+
+
+
+h.style.animationDelay =
+Math.random()*3+"s";
+
+
+
+document.body.appendChild(h);
 
 
 
 setTimeout(()=>{
 
+h.remove();
 
-text.innerHTML="I LOVE YOU TWIN 💚";
-
-
-},2500);
+},8000);
 
 
 
-setTimeout(()=>{
-
-
-document.body.style.transition="3s";
-
-document.body.style.opacity="0";
-
-
-},6000);
-
-
-
-};
+}
 
 
 
