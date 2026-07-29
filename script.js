@@ -1,67 +1,51 @@
+const gift = document.getElementById("gift");
+const giftScreen = document.getElementById("giftScreen");
 const kisuke = document.getElementById("kisuke");
-const gift=document.getElementById("gift");
 
-const giftScreen=document.getElementById("giftScreen");
-
-
-const text=document.getElementById("text");
-
-const buttons=document.getElementById("buttons");
+const text = document.getElementById("text");
+const buttons = document.getElementById("buttons");
 
 
-
-const messages=[
-
-"Twin...",
-
-"Uzakta olduğum için elimden anca bu geldi.",
-
-"2 yıldır hayatımı güzelleştiren yegane insansın.",
-
-"Nice mutlu senelere..",
-
-"Yada daha iyisi...",
-
-"Nice bizli senelere diyorum.",
-
-"İyi ki doğdun twin 💚"
-
+const messages = [
+    "Twin...",
+    "Uzakta olduğum için elimden anca bu geldi.",
+    "2 yıldır hayatımı güzelleştiren yegane insansın.",
+    "Ve nice mutlu senelere..",
+    "Yada daha iyisi...",
+    "Nice bizli senelere diyorum.",
+    "İyi ki doğdun twin 💚"
 ];
 
 
 
 function wait(ms){
-
-return new Promise(resolve=>setTimeout(resolve,ms));
-
+    return new Promise(resolve => {
+        setTimeout(resolve, ms);
+    });
 }
 
 
 
-async function write(msg){
+
+async function writeText(message){
+
+    text.innerHTML = "";
+    
+    text.classList.remove("fade");
+    void text.offsetWidth;
+    text.classList.add("fade");
 
 
-text.innerHTML="";
+    for(let i = 0; i < message.length; i++){
+
+        text.innerHTML += message[i];
+
+        await wait(60);
+
+    }
 
 
-text.classList.add("fade");
-
-
-
-for(let i=0;i<msg.length;i++){
-
-
-text.innerHTML+=msg[i];
-
-
-await wait(60);
-
-
-}
-
-
-await wait(2000);
-
+    await wait(2000);
 
 }
 
@@ -71,19 +55,14 @@ await wait(2000);
 
 async function start(){
 
+    for(let i = 0; i < messages.length; i++){
 
-for(let m of messages){
+        await writeText(messages[i]);
 
-
-await write(m);
-
-
-}
+    }
 
 
-
-question();
-
+    askLove();
 
 }
 
@@ -92,116 +71,84 @@ question();
 
 
 
+function askLove(){
 
-function question(){
 
+    text.innerHTML = "Beni seviyor musun Twin? 💚";
 
-text.innerHTML="Beni seviyor musun Twin? 💚";
 
+    buttons.innerHTML = `
+    
+    <button id="yes">
+    EVET 💚
+    </button>
 
-buttons.innerHTML=`
+    <button id="no">
+    HAYIR 😈
+    </button>
+    
+    `;
 
-<button id="yes">
-EVET 💚
-</button>
 
 
-<button id="no">
-HAYIR 😈
-</button>
+    const yes = document.getElementById("yes");
+    const no = document.getElementById("no");
 
-`;
 
 
+    function moveNo(){
 
-let yes=document.getElementById("yes");
+        no.style.position = "fixed";
 
-let no=document.getElementById("no");
+        no.style.left = Math.random()*80 + "%";
 
+        no.style.top = Math.random()*80 + "%";
 
+    }
 
-function escapeNo(){
 
 
-no.style.position="fixed";
+    no.addEventListener("mouseenter", moveNo);
 
+    no.addEventListener("touchstart", moveNo);
 
-no.style.left=Math.random()*80+"%";
+    no.addEventListener("click", moveNo);
 
-no.style.top=Math.random()*80+"%";
 
 
-}
 
 
+    yes.onclick = function(){
 
-no.onmouseenter=escapeNo;
 
-no.onclick=escapeNo;
+        buttons.innerHTML = "";
 
+        text.innerHTML = "BİLİYORDUM TWIN 😎💚";
 
 
+        createHearts();
 
-yes.onclick=function(){
 
 
-buttons.innerHTML="";
+        setTimeout(function(){
 
+            text.innerHTML = "I LOVE YOU TWIN 💚";
 
-text.innerHTML="BİLİYORDUM TWIN 😎💚";
+        },2500);
 
 
-function hearts(){
 
+        setTimeout(function(){
 
-for(let i=0;i<80;i++){
+            document.body.style.transition = "3s";
 
+            document.body.style.opacity = "0";
 
-let h=document.createElement("div");
+        },6000);
 
 
-h.className="heart";
 
-
-h.innerHTML="💚";
-
-
-
-h.style.left =
-Math.random()*100+"%";
-
-
-
-h.style.fontSize =
-(Math.random()*25+15)+"px";
-
-
-
-h.style.animationDuration =
-(Math.random()*4+4)+"s";
-
-
-
-h.style.animationDelay =
-Math.random()*3+"s";
-
-
-
-document.body.appendChild(h);
-
-
-
-setTimeout(()=>{
-
-h.remove();
-
-},8000);
-
-
-
-}
-
-
+    };
 
 }
 
@@ -209,95 +156,65 @@ h.remove();
 
 
 
-function hearts(){
 
 
-for(let i=0;i<70;i++){
+function createHearts(){
 
 
-let h=document.createElement("div");
+    for(let i = 0; i < 80; i++){
 
 
-h.className="heart";
+        let heart = document.createElement("div");
 
 
-h.innerHTML="💚";
+        heart.className = "heart";
 
 
-h.style.left=Math.random()*100+"%";
+        heart.innerHTML = "💚";
 
 
-h.style.top="0px";
+        heart.style.left = Math.random()*100 + "%";
 
 
-document.body.appendChild(h);
+        heart.style.animationDuration =
+        (Math.random()*4+4)+"s";
+
+
+        document.body.appendChild(heart);
 
 
 
-setTimeout(()=>{
+        setTimeout(function(){
 
-h.remove();
+            heart.remove();
 
-},4000);
+        },8000);
 
+
+    }
 
 }
 
 
 
-}
 
 
 
 
-
+let opened = false;
 
 
 function openGift(){
 
 
-gift.classList.add("open");
+    if(opened) return;
 
 
-setTimeout(()=>{
-
-
-giftScreen.classList.add("hide");
-
-
-kisuke.classList.add("show");
-
-
-setTimeout(()=>{
-
-
-start();
-
-
-},1500);
-
-
-
-},1000);
-
-
-
-}
-
-
-// PC tıklama
-
-let giftOpened = false;
-
-
-function openGift(){
-
-    if(giftOpened) return;
-
-    giftOpened = true;
+    opened = true;
 
 
     gift.classList.add("open");
+
 
 
     setTimeout(function(){
@@ -316,9 +233,7 @@ function openGift(){
 
         setTimeout(function(){
 
-
             start();
-
 
         },1500);
 
@@ -326,7 +241,9 @@ function openGift(){
 
     },1000);
 
+
 }
+
 
 
 
