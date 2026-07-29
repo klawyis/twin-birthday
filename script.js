@@ -1,13 +1,9 @@
-const text=document.getElementById("text");
-
-const buttons=document.getElementById("buttons");
-
+const text = document.getElementById("text");
+const buttons = document.getElementById("buttons");
 
 
-// Yazılar
 
-
-const messages=[
+const messages = [
 
 "Twin...",
 
@@ -27,30 +23,42 @@ const messages=[
 
 
 
+
+// Bekleme fonksiyonu
+
 function wait(ms){
 
-return new Promise(r=>setTimeout(r,ms));
+return new Promise(resolve => setTimeout(resolve, ms));
 
 }
 
 
 
-async function write(msg){
+
+
+// Yazı yazma efekti
+
+async function write(message){
 
 
 text.innerHTML="";
 
+
 text.className="fade";
 
 
-for(let char of msg){
 
-text.innerHTML+=char;
+for(let i=0;i<message.length;i++){
+
+
+text.innerHTML += message[i];
+
 
 await wait(60);
 
 
 }
+
 
 
 await wait(2500);
@@ -60,14 +68,21 @@ await wait(2500);
 
 
 
+
+
+// Ana başlangıç
+
 async function start(){
 
 
-for(let m of messages){
+for(let message of messages){
 
-await write(m);
+
+await write(message);
+
 
 }
+
 
 
 loveQuestion();
@@ -77,10 +92,22 @@ loveQuestion();
 
 
 
+
+
+
+
+// Seviyor musun ekranı
+
 function loveQuestion(){
 
 
-text.innerHTML="Beni seviyor musun Twin? 💚";
+
+text.className="fade";
+
+
+text.innerHTML=
+"Beni seviyor musun Twin? 💚";
+
 
 
 buttons.innerHTML=`
@@ -98,43 +125,33 @@ HAYIR 😈
 
 
 
-let yes=document.getElementById("yes");
+const yes=document.getElementById("yes");
 
-let no=document.getElementById("no");
-
-
-
-no.onmouseover=function(){
-
-
-no.style.left=Math.random()*80+"%";
-
-no.style.top=Math.random()*80+"%";
-
-
-};
+const no=document.getElementById("no");
 
 
 
-yes.onclick=function(){
 
 
-buttons.innerHTML="";
+// Hayır butonu kaçıyor
+
+function escapeButton(){
 
 
-text.innerHTML="BİLİYORDUM TWIN 😎💚";
+
+let x=Math.random()*75;
+
+let y=Math.random()*75;
 
 
-setTimeout(()=>{
+
+no.style.position="absolute";
 
 
-text.innerHTML="I LOVE YOU TWIN 💚";
+no.style.left=x+"%";
 
 
-},2500);
-
-
-};
+no.style.top=y+"%";
 
 
 
@@ -142,36 +159,125 @@ text.innerHTML="I LOVE YOU TWIN 💚";
 
 
 
-start();
+no.addEventListener(
+"mouseenter",
+escapeButton
+);
+
+
+
+no.addEventListener(
+"click",
+escapeButton
+);
 
 
 
 
-// kalp yağmuru
 
 
-setInterval(()=>{
+
+// Evet butonu
+
+yes.onclick=function(){
+
+
+
+buttons.innerHTML="";
+
+
+text.innerHTML=
+"BİLİYORDUM TWIN 😎💚";
+
+
+
+heartExplosion();
+
+
+
+
+setTimeout(()=>{
+
+
+text.innerHTML=
+"I LOVE YOU TWIN 💚";
+
+
+},2500);
+
+
+
+
+setTimeout(()=>{
+
+
+document.body.style.transition="3s";
+
+
+document.body.style.opacity="0";
+
+
+},6500);
+
+
+
+};
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+// Kalp patlaması
+
+function heartExplosion(){
+
+
+
+for(let i=0;i<60;i++){
+
 
 
 let heart=document.createElement("div");
 
 
-heart.className="heart";
-
-
 heart.innerHTML="💚";
 
 
-heart.style.left=Math.random()*100+"%";
+
+heart.style.position="absolute";
 
 
-heart.style.animationDuration=
-
-(Math.random()*3+3)+"s";
-
+heart.style.left=
+Math.random()*100+"%";
 
 
-document.getElementById("hearts").appendChild(heart);
+
+heart.style.top=
+Math.random()*100+"%";
+
+
+
+heart.style.fontSize=
+(Math.random()*20+15)+"px";
+
+
+
+heart.style.animation=
+"fall 3s linear";
+
+
+
+document.body.appendChild(heart);
 
 
 
@@ -179,8 +285,23 @@ setTimeout(()=>{
 
 heart.remove();
 
-},6000);
+},3000);
 
 
 
-},300);
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+// Sayfa başlat
+
+start();
