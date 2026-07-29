@@ -534,3 +534,11 @@ opacity:0;
 
 
 }
+
+#gift{
+
+touch-action: manipulation;
+
+-webkit-tap-highlight-color: transparent;
+
+}
