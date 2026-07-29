@@ -253,11 +253,10 @@ h.remove();
 
 
 
-gift.onclick=function(){
+function openGift(){
 
 
 gift.classList.add("open");
-
 
 
 setTimeout(()=>{
@@ -266,9 +265,7 @@ setTimeout(()=>{
 giftScreen.classList.add("hide");
 
 
-
 kisuke.classList.add("show");
-
 
 
 setTimeout(()=>{
@@ -285,4 +282,20 @@ start();
 
 
 
-};
+}
+
+
+// PC tıklama
+
+gift.addEventListener(
+"click",
+openGift
+);
+
+
+// Mobil dokunma
+
+gift.addEventListener(
+"touchstart",
+openGift
+);
