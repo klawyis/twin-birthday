@@ -1,3 +1,4 @@
+const kisuke = document.getElementById("kisuke");
 const gift=document.getElementById("gift");
 
 const giftScreen=document.getElementById("giftScreen");
